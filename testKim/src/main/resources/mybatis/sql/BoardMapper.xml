@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+						"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="mapper.BoardMapper">
+		<!-- 쿼리문 작성 -->
+		<select id="selectTest" resultType="hashmap">
+			select SEQ, TITL, CNTN, WRTR, REG_DTTM, MOD_DTTM
+  			  from tbrd_mst
+		</select>
+</mapper>
