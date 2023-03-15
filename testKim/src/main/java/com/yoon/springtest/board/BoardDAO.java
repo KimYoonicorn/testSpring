@@ -17,4 +17,13 @@ public class BoardDAO {
 		List<Map<String, String>> result = SqlSession.selectList("mapper.BoardMapper.selectTest");
 		return result;
 	}
+	
+	/**
+	 * 게시물 업데이트
+	 * @param map 업데이트 내용
+	 * @throws Exception
+	 */
+	public void updateTest(Map map) {  
+		SqlSession.update("mapper.BoardMapper.updateTest", map);
+	}
 }

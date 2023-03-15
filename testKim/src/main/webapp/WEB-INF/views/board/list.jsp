@@ -5,45 +5,27 @@
 <html lang="en">
 <script src="/resources/js/jquery-3.6.4.min.js"></script>
 <script>
-function onClickBtn1() {
+function onClickBtn1() {     
 	debugger;
-	var arr = [];
-	var arrSeq = $("input[id^='seq']");
-	for(var i=0; i<$("input[id^='seq']").length; i++){
-		console.log();
-		arr.push(arrSeq[i].value);
-	}
 	
-	let formData = new FormData();
-	formData.append('arr', arr);
-	
-	/* $.ajax({
-        url:"/board/save",
-        dataType:'json',
-        type:'post',
-        data: formData,
-        processData: false,
-        contentType: false,
-        cache:false,
-        async:false,
-        success:function(data, textStatus) {
-           if (jqXHR.status == 200) {
-        	   alert("성공");
-           } else {
-        	   alert("오류");
-           }
-        }
-     }); */
-     
      $.ajax({
-   	    data : { type1 : arr, // data 옵션
-   	    		 type2 : 'asd',
+   	    data : { type1 : $("input[id='SEQ_1']")[0].value, // data 옵션
+   	 			 type2 : $("input[id='TITL_1']")[0].value,
+   	 			 type3 : $("input[id='CNTN_1']")[0].value,
+	   	 		 type4 : $("input[id='WRTR_1']")[0].value,
+	   	 		 type5 : $("input[id='REG_DTTM_1']")[0].value,
+	   	 	     type6 : $("input[id='MOD_DTTM_1']")[0].value,
    	    },	// 끝에 컴마(,)를 주의해야됨
-   	    url : "/board/save", // url 필수
-   	    success:function(data){ // success option
-   	    alert(data);
-   	    }
    	    
+   	    url : "/board/save", // url 필수
+	   	 success: function(data){
+	   		 if(data=='sucess'){
+	   			 alert("성공");
+	   		 }
+	     },
+	     error: function(){
+	         alert("err");
+	     }
    	    })
 }
 </script>
@@ -437,12 +419,12 @@ function onClickBtn1() {
                                     <tbody>
                                     <c:forEach var="item" items="${result}">
                                        	<tr>                                   
-                                       		<td><input id="seq_${item.SEQ}" type="text" value="${item.SEQ}"></td>
-                                       		<td>${item.TITL}</td>
-                                       		<td>${item.CNTN}</td>
-                                       		<td>${item.WRTR}</td>
-                                       		<td>${item.REG_DTTM}</td>
-                                       		<td>${item.MOD_DTTM}</td>
+                                       		<td><input id="SEQ_${item.SEQ}" type="text" value="${item.SEQ}"></td>
+                                       		<td><input id="TITL_${item.SEQ}" type="text" value="${item.TITL}"></td>
+                                       		<td><input id="CNTN_${item.SEQ}" type="text" value="${item.CNTN}"></td>
+                                       		<td><input id="WRTR_${item.SEQ}" type="text" value="${item.WRTR}"></td>
+                                       		<td><input id="REG_DTTM_${item.SEQ}" type="text" value="${item.REG_DTTM}"></td>
+                                       		<td><input id="MOD_DTTM_${item.SEQ}" type="text" value="${item.MOD_DTTM}"></td>
                                        	</tr>
                                        	</c:forEach>
                                     </tbody>

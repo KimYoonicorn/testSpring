@@ -49,8 +49,15 @@ public class BoardController {
     
     @RequestMapping("/board/save")
     public @ResponseBody String getServerData(String type1,String type2,String type3,String type4,String type5,String type6) {
+    	Map map = new HashMap();
+    	map.put("SEQ", type1);
+    	map.put("TITL", type2);
+    	map.put("CNTN", type3);
+    	map.put("WRTR", type4);
     	
-		return type1 + type2;
+    	boardService.updateTest(map);
+    	
+		return "success";
 	}
     
 //    @ResponseBody

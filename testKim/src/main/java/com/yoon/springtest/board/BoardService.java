@@ -16,13 +16,11 @@ public class BoardService {
 	 */
 	public List<Map<String, String>> getData() {
 		List<Map<String, String>> listData = boardDAO.getTestValue();
-//		String result = "";
-//		for(int i = 0; i < listData.size(); i++) {
-//			if("제목1".equals(listData.get(i))) {
-//				result = listData.get(i);
-//				break;
-//			}
-//		}
+
 		return listData;
+	}
+	
+	public void updateTest(Map map) {
+		boardDAO.updateTest(map);
 	}
 }

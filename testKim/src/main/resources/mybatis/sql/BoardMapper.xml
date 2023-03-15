@@ -8,4 +8,15 @@
 			select SEQ, TITL, CNTN, WRTR, REG_DTTM, MOD_DTTM
   			  from tbrd_mst
 		</select>
+		
+		<!-- 데이터 업데이트 -->
+		<update id="updateTest" parameterType="hashmap">
+   			 update tbrd_mst 
+   			    set TITL = #{TITL}
+   			      , CNTN = #{CNTN}
+   			      , WRTR = #{WRTR}
+   			      , REG_DTTM = NOW()
+   			      , MOD_DTTM = NOW()
+  			  where SEQ = #{SEQ}
+		</update>
 </mapper>
