@@ -3,6 +3,50 @@
 <!DOCTYPE html>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html lang="en">
+<script src="/resources/js/jquery-3.6.4.min.js"></script>
+<script>
+function onClickBtn1() {
+	debugger;
+	var arr = [];
+	var arrSeq = $("input[id^='seq']");
+	for(var i=0; i<$("input[id^='seq']").length; i++){
+		console.log();
+		arr.push(arrSeq[i].value);
+	}
+	
+	let formData = new FormData();
+	formData.append('arr', arr);
+	
+	/* $.ajax({
+        url:"/board/save",
+        dataType:'json',
+        type:'post',
+        data: formData,
+        processData: false,
+        contentType: false,
+        cache:false,
+        async:false,
+        success:function(data, textStatus) {
+           if (jqXHR.status == 200) {
+        	   alert("성공");
+           } else {
+        	   alert("오류");
+           }
+        }
+     }); */
+     
+     $.ajax({
+   	    data : { type1 : arr, // data 옵션
+   	    		 type2 : 'asd',
+   	    },	// 끝에 컴마(,)를 주의해야됨
+   	    url : "/board/save", // url 필수
+   	    success:function(data){ // success option
+   	    alert(data);
+   	    }
+   	    
+   	    })
+}
+</script>
 
 <head>
 
@@ -393,7 +437,7 @@
                                     <tbody>
                                     <c:forEach var="item" items="${result}">
                                        	<tr>                                   
-                                       		<td><input type="text" value="${item.SEQ}"></td>
+                                       		<td><input id="seq_${item.SEQ}" type="text" value="${item.SEQ}"></td>
                                        		<td>${item.TITL}</td>
                                        		<td>${item.CNTN}</td>
                                        		<td>${item.WRTR}</td>
@@ -470,6 +514,12 @@
 
     <!-- Page level custom scripts -->
     <script src="js/demo/datatables-demo.js"></script>
+    
+    <h2>순번 저장</h2>
+	<div id="m1" class="alert alert-info"></div>
+	<div>
+		<input type="button" class="btn btn-default" value="클릭" onclick="onClickBtn1();"/>
+	</div>
 
 </body>
 
