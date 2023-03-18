@@ -5,6 +5,28 @@
 <html lang="en">
 <script src="/resources/js/jquery-3.6.4.min.js"></script>
 <script>
+function onAddBtn() {
+    $.ajax({
+   	    data : { type1 : $("input[id='addSEQ']")[5].value, // data 옵션
+   	 			 type2 : $("input[id='addTITL']")[5].value,
+   	 			 type3 : $("input[id='addCNTN']")[5].value,
+	   	 		 type4 : $("input[id='addWRTR']")[5].value,
+	   	 		 type5 : $("input[id='addREG_DTTM']")[5].value,
+	   	 	     type6 : $("input[id='addMOD_DTTM']")[5].value,
+   	    },	// 끝에 컴마(,)를 주의해야됨
+   	    
+   	    url : "/board/insert", // url 필수
+	   	 success: function(data){
+	   		 if(data=='sucess'){
+	   			 alert("성공");
+	   		 }
+	     },
+	     error: function(){
+	         alert("err");
+	     }
+   	    })
+}
+
 function onClickBtn1() {     
 	debugger;
 	
@@ -17,7 +39,7 @@ function onClickBtn1() {
 	   	 	     type6 : $("input[id='MOD_DTTM_1']")[0].value,
    	    },	// 끝에 컴마(,)를 주의해야됨
    	    
-   	    url : "/board/save", // url 필수
+   	    url : "/board/update", // url 필수
 	   	 success: function(data){
 	   		 if(data=='sucess'){
 	   			 alert("성공");
@@ -416,7 +438,7 @@ function onClickBtn1() {
                                             <th>수정일시</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
+                                    <tbody id="table">
                                     <c:forEach var="item" items="${result}">
                                        	<tr>                                   
                                        		<td><input id="SEQ_${item.SEQ}" type="text" value="${item.SEQ}"></td>
@@ -502,7 +524,39 @@ function onClickBtn1() {
 	<div>
 		<input type="button" class="btn btn-default" value="클릭" onclick="onClickBtn1();"/>
 	</div>
-
+	
+	<h2>리스트 추가</h2>
+	<div id="m2" class="alert alert-info"></div>
+			 <table border="2" width=250 bordercolor="green" cellspacing="2" bordercolor="green">
+	            <tr>
+	                <td>순번 :</td>
+	                <td><input id="addSEQ" type="text"></td>
+	            </tr>
+	            <tr>
+	                <td>제목 :</td>
+	                <td><input id="addTITL" type="text"></td>
+	            </tr>
+	            <tr>
+	                <td>내용 :</td>
+	                <td><input id ="addCNTN" type="text"></td>
+	            </tr>
+	            <tr>
+	                <td>작성자 :</td>
+	                <td><input id = "addWRTR" type="text"></td>
+	            </tr>
+	            <tr>
+	               <td>등록일시 :</td>
+	                <td><input id = "addREG_DTTM" type="text"></td>
+	            </tr>
+	            <tr>
+	               <td>수정일시 :</td>
+	                <td><input id = "addMOD_DTTM" type="text"></td>
+	            </tr>
+	            <tr>
+	                <td align="center" colspan=2><input type="button" class="btn btn-default" value="리스트 추가" onclick="onAddBtn();">
+	                    <input type="button" class="btn btn-default" value="취소"></td>
+	            </tr>
+	    </table>	
 </body>
 
 </html>

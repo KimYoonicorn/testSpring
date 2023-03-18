@@ -23,4 +23,8 @@ public class BoardService {
 	public void updateTest(Map map) {
 		boardDAO.updateTest(map);
 	}
+	
+	public void insertTest(Map map) {
+		boardDAO.insertTest(map);
+	}
 }

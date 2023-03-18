@@ -26,4 +26,13 @@ public class BoardDAO {
 	public void updateTest(Map map) {  
 		SqlSession.update("mapper.BoardMapper.updateTest", map);
 	}
+	
+	/**
+	 * 게시물 추가
+	 * @param 게시글 추가
+	 * @throws Exception
+	 */
+	public void insertTest(Map map) {  
+		SqlSession.insert("mapper.BoardMapper.insertTest", map);
+	}
 }

@@ -19,4 +19,15 @@
    			      , MOD_DTTM = NOW()
   			  where SEQ = #{SEQ}
 		</update>
+		
+		<!-- 데이터 추가 -->
+		<insert id="insertTest" parameterType="hashmap">
+   			 insert into tbrd_mst 
+   			 	SEQ = #{SEQ}
+   			    TITL = #{TITL}
+   			  , CNTN = #{CNTN}
+   			  , WRTR = #{WRTR}
+   			  , REG_DTTM = NOW()
+   			  , MOD_DTTM = NOW()
+		</insert>
 </mapper>

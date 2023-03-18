@@ -36,18 +36,7 @@ public class BoardController {
         return mv;
     }
     
-//    @RequestMapping(value="/board/save", method = RequestMethod.POST)
-//    public ModelAndView insertSongGener(HttpServletRequest request, HttpServletResponse response) throws Exception {
-//        ModelAndView mav = new ModelAndView();
-//        mav.setViewName("jsonView");
-//        HashMap map = new HashMap();
-//        map.put("result", "success");
-//        mav.addObject("DATA", map);
-//        
-//        return mav;
-//    }
-    
-    @RequestMapping("/board/save")
+    @RequestMapping("/board/update")
     public @ResponseBody String getServerData(String type1,String type2,String type3,String type4,String type5,String type6) {
     	Map map = new HashMap();
     	map.put("SEQ", type1);
@@ -60,17 +49,18 @@ public class BoardController {
 		return "success";
 	}
     
-//    @ResponseBody
-//    @RequestMapping(value = "/board/save", method = RequestMethod.POST)
-//    public ModelAndView save(Model model, HttpServletRequest request, HttpServletResponse response) {
-//    	Map parameter = request.getParameterMap();
-//    	parameter.get("arr");
-//    	
-//    	ModelAndView mv = new ModelAndView();
-//    	mv.setViewName("jsonView");
-//		mv.addObject("result", "success"); 
-//        return mv;
-//    }
+    @RequestMapping("/board/insert")
+    public @ResponseBody String getServerDatainsert(String type1,String type2,String type3,String type4,String type5,String type6) {
+    	Map map = new HashMap();
+    	map.put("SEQ", type1);
+    	map.put("TITL", type2);
+    	map.put("CNTN", type3);
+    	map.put("WRTR", type4);
+    	
+    	boardService.insertTest(map);
+    	
+		return "success";
+	}
 }
 
     
