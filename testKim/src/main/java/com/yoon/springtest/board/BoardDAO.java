@@ -35,4 +35,13 @@ public class BoardDAO {
 	public void insertTest(Map map) {  
 		SqlSession.insert("mapper.BoardMapper.insertTest", map);
 	}
+	
+	/**
+	 * 게시물 삭제
+	 * @param 게시글 삭제
+	 * @throws Exception
+	 */
+	public void deleteTest(Map map) {  
+		SqlSession.delete("mapper.BoardMapper.deleteTest", map);
+	}
 }

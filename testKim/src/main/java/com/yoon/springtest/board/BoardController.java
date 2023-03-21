@@ -66,6 +66,8 @@ public class BoardController {
     	
 		return "success";
 	}
+    
+    
 }
 
     

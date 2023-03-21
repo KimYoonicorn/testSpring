@@ -40,4 +40,12 @@
    			  , NOW()
    			  )
 		</insert>
+		
+		<!-- 데이터 삭제 -->
+		<update id="deleteTest" parameterType="hashmap">
+   			 delete from tbrd_mst 
+  			  where SEQ = #{SEQ}
+		</update>
+		
+		
 </mapper>

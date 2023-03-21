@@ -5,9 +5,6 @@
 <html lang="en">
 <script src="/resources/js/jquery-3.6.4.min.js"></script>
 <script>
-$(document).ready(function(){
-	getData();
-});
 function onAddBtn() {
     $.ajax({
    	    data : { titl : $("input[id='addTITL']")[0].value,
@@ -18,41 +15,16 @@ function onAddBtn() {
    	    url : "/board/insert", // url 필수
 	   	 success: function(data){
 	   		 if(data=='success'){
+	   			$(".table-responsive").load(location.href + " .table-responsive");  //새로고침
+	   			//location.reload();
 	   			 alert("성공");
 	   		 }
 	     },
 	     error: function(){
 	         alert("err");
 	     }
-   	    });
-}
-
-function getData() {
-	alert("getData");
-	/* <c:forEach var="item" items="${result}">
-   	<tr>                                   
-   		<td><input id="SEQ_${item.SEQ}" type="text" value="${item.SEQ}"></td>
-   		<td><input id="TITL_${item.SEQ}" type="text" value="${item.TITL}"></td>
-   		<td><input id="CNTN_${item.SEQ}" type="text" value="${item.CNTN}"></td>
-   		<td><input id="WRTR_${item.SEQ}" type="text" value="${item.WRTR}"></td>
-   		<td><input id="REG_DTTM_${item.SEQ}" type="text" value="${item.REG_DTTM}"></td>
-   		<td><input id="MOD_DTTM_${item.SEQ}" type="text" value="${item.MOD_DTTM}"></td>
-   	</tr>
-   	</c:forEach> */
-   	
-	$.ajax({   	    
-   	    url : '/board/select', // url 필수
-   	    type : 'get',
-   	 	contentType : "application/json;charset=UTF-8",
-	   	 success: function(data){
-	   		 if(data=='success'){
-	   			 
-	   		 }
-	     },
-	     error: function(){
-	         alert("err");
-	     }
-   	    });
+   	    })
+   	    
 }
 
 function onClickBtn1() {     
@@ -467,7 +439,16 @@ function onClickBtn1() {
                                         </tr>
                                     </thead>
                                     <tbody id="table">
-                                    
+                                    <c:forEach var="item" items="${result}">
+                                       	<tr>                                   
+                                       		<td><input id="SEQ_${item.SEQ}" type="text" value="${item.SEQ}"></td>
+                                       		<td><input id="TITL_${item.SEQ}" type="text" value="${item.TITL}"></td>
+                                       		<td><input id="CNTN_${item.SEQ}" type="text" value="${item.CNTN}"></td>
+                                       		<td><input id="WRTR_${item.SEQ}" type="text" value="${item.WRTR}"></td>
+                                       		<td><input id="REG_DTTM_${item.SEQ}" type="text" value="${item.REG_DTTM}"></td>
+                                       		<td><input id="MOD_DTTM_${item.SEQ}" type="text" value="${item.MOD_DTTM}"></td>
+                                       	</tr>
+                                       	</c:forEach>
                                     </tbody>
                                 </table>
                             </div>
@@ -565,11 +546,11 @@ function onClickBtn1() {
 	            </tr>
 	            <tr>
 	               <td>등록일시 :</td>
-	                <td><input id = "addREG_DTTM" type="text"></td>
+	                <td><input id = "addREG_DTTM"></td>
 	            </tr>
 	            <tr>
 	               <td>수정일시 :</td>
-	                <td><input id = "addMOD_DTTM" type="text"></td>
+	                <td><input id = "addMOD_DTTM"></td>
 	            </tr>
 	            <tr>
 	                <td align="center" colspan=2><input type="button" class="btn btn-default" value="리스트 추가" onclick="onAddBtn();">
