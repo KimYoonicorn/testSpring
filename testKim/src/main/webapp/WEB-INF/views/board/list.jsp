@@ -5,26 +5,54 @@
 <html lang="en">
 <script src="/resources/js/jquery-3.6.4.min.js"></script>
 <script>
+$(document).ready(function(){
+	getData();
+});
 function onAddBtn() {
     $.ajax({
-   	    data : { type1 : $("input[id='addSEQ']")[5].value, // data 옵션
-   	 			 type2 : $("input[id='addTITL']")[5].value,
-   	 			 type3 : $("input[id='addCNTN']")[5].value,
-	   	 		 type4 : $("input[id='addWRTR']")[5].value,
-	   	 		 type5 : $("input[id='addREG_DTTM']")[5].value,
-	   	 	     type6 : $("input[id='addMOD_DTTM']")[5].value,
+   	    data : { titl : $("input[id='addTITL']")[0].value,
+   	 			 cntn : $("input[id='addCNTN']")[0].value,
+	   	 		 wrtr : $("input[id='addWRTR']")[0].value
    	    },	// 끝에 컴마(,)를 주의해야됨
    	    
    	    url : "/board/insert", // url 필수
 	   	 success: function(data){
-	   		 if(data=='sucess'){
+	   		 if(data=='success'){
 	   			 alert("성공");
 	   		 }
 	     },
 	     error: function(){
 	         alert("err");
 	     }
-   	    })
+   	    });
+}
+
+function getData() {
+	alert("getData");
+	/* <c:forEach var="item" items="${result}">
+   	<tr>                                   
+   		<td><input id="SEQ_${item.SEQ}" type="text" value="${item.SEQ}"></td>
+   		<td><input id="TITL_${item.SEQ}" type="text" value="${item.TITL}"></td>
+   		<td><input id="CNTN_${item.SEQ}" type="text" value="${item.CNTN}"></td>
+   		<td><input id="WRTR_${item.SEQ}" type="text" value="${item.WRTR}"></td>
+   		<td><input id="REG_DTTM_${item.SEQ}" type="text" value="${item.REG_DTTM}"></td>
+   		<td><input id="MOD_DTTM_${item.SEQ}" type="text" value="${item.MOD_DTTM}"></td>
+   	</tr>
+   	</c:forEach> */
+   	
+	$.ajax({   	    
+   	    url : '/board/select', // url 필수
+   	    type : 'get',
+   	 	contentType : "application/json;charset=UTF-8",
+	   	 success: function(data){
+	   		 if(data=='success'){
+	   			 
+	   		 }
+	     },
+	     error: function(){
+	         alert("err");
+	     }
+   	    });
 }
 
 function onClickBtn1() {     
@@ -439,16 +467,7 @@ function onClickBtn1() {
                                         </tr>
                                     </thead>
                                     <tbody id="table">
-                                    <c:forEach var="item" items="${result}">
-                                       	<tr>                                   
-                                       		<td><input id="SEQ_${item.SEQ}" type="text" value="${item.SEQ}"></td>
-                                       		<td><input id="TITL_${item.SEQ}" type="text" value="${item.TITL}"></td>
-                                       		<td><input id="CNTN_${item.SEQ}" type="text" value="${item.CNTN}"></td>
-                                       		<td><input id="WRTR_${item.SEQ}" type="text" value="${item.WRTR}"></td>
-                                       		<td><input id="REG_DTTM_${item.SEQ}" type="text" value="${item.REG_DTTM}"></td>
-                                       		<td><input id="MOD_DTTM_${item.SEQ}" type="text" value="${item.MOD_DTTM}"></td>
-                                       	</tr>
-                                       	</c:forEach>
+                                    
                                     </tbody>
                                 </table>
                             </div>
@@ -528,10 +547,10 @@ function onClickBtn1() {
 	<h2>리스트 추가</h2>
 	<div id="m2" class="alert alert-info"></div>
 			 <table border="2" width=250 bordercolor="green" cellspacing="2" bordercolor="green">
-	            <tr>
+	            <!-- <tr>
 	                <td>순번 :</td>
 	                <td><input id="addSEQ" type="text"></td>
-	            </tr>
+	            </tr> -->
 	            <tr>
 	                <td>제목 :</td>
 	                <td><input id="addTITL" type="text"></td>

@@ -22,12 +22,22 @@
 		
 		<!-- 데이터 추가 -->
 		<insert id="insertTest" parameterType="hashmap">
-   			 insert into tbrd_mst 
-   			 	SEQ = #{SEQ}
-   			    TITL = #{TITL}
-   			  , CNTN = #{CNTN}
-   			  , WRTR = #{WRTR}
-   			  , REG_DTTM = NOW()
-   			  , MOD_DTTM = NOW()
+			<selectKey resultType="string" keyProperty="SEQ" order="BEFORE">
+        		SELECT COALESCE(MAX(SEQ), 0) + 1 FROM TBRD_MST
+        	</selectKey>
+   			 insert into tbrd_mst (
+   			 	SEQ
+   			  , TITL
+   			  , CNTN
+   			  , WRTR
+   			  , REG_DTTM
+   			  , MOD_DTTM ) VALUES (
+   			  #{SEQ}
+   			  , #{TITL}
+   			  , #{CNTN}
+   			  , #{WRTR}
+   			  , NOW()
+   			  , NOW()
+   			  )
 		</insert>
 </mapper>

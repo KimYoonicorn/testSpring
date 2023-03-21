@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -36,6 +35,12 @@ public class BoardController {
         return mv;
     }
     
+    @RequestMapping("/board/select")
+    public @ResponseBody List<Map<String, String>> getData() {
+    	List<Map<String, String>> result = boardService.getData();
+		return result;
+	}
+    
     @RequestMapping("/board/update")
     public @ResponseBody String getServerData(String type1,String type2,String type3,String type4,String type5,String type6) {
     	Map map = new HashMap();
@@ -50,12 +55,12 @@ public class BoardController {
 	}
     
     @RequestMapping("/board/insert")
-    public @ResponseBody String getServerDatainsert(String type1,String type2,String type3,String type4,String type5,String type6) {
+    public @ResponseBody String getServerDatainsert(String seq,String titl,String cntn,String wrtr) {
     	Map map = new HashMap();
-    	map.put("SEQ", type1);
-    	map.put("TITL", type2);
-    	map.put("CNTN", type3);
-    	map.put("WRTR", type4);
+    	map.put("SEQ", seq);
+    	map.put("TITL", titl);
+    	map.put("CNTN", cntn);
+    	map.put("WRTR", wrtr);
     	
     	boardService.insertTest(map);
     	
